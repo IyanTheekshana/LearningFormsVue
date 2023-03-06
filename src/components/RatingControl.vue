@@ -1,0 +1,77 @@
+<template>
+  <ul>
+    <li
+      :class="{
+        active: modelValue === 'poor',
+      }"
+    >
+      <button @click="activate('poor')" type="button">Poor</button>
+    </li>
+    <li
+      :class="{
+        active: modelValue === 'average',
+      }"
+    >
+      <button @click="activate('average')" type="button">Average</button>
+    </li>
+    <li
+      :class="{
+        active: modelValue === 'good',
+      }"
+    >
+      <button @click="activate('good')" type="button">Good</button>
+    </li>
+  </ul>
+</template>
+
+<script>
+export default {
+  props: ["modelValue"],
+  emits: ["update:modelValue"],
+  //   data() {
+  //     return {
+  //       activeOptions: this.modelValue,
+  //     };
+  //   },
+  //   computed: {
+  //     activeOptions() {
+  //       return this.modelValue;
+  //     },
+  //   },
+  methods: {
+    activate(option) {
+      //   this.activeOptions = option;
+      this.$emit("update:modelValue", option);
+    },
+  },
+};
+</script>
+
+<style scoped>
+ul {
+  list-style: none;
+  margin: 0.5rem 0;
+  padding: 0;
+  display: flex;
+}
+
+li {
+  margin: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  justify-items: center;
+}
+
+button {
+  font: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.active {
+  background-color: gold;
+  border: 1px solid gold;
+  font-weight: bold;
+}
+</style>
